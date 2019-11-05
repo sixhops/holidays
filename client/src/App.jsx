@@ -8,6 +8,7 @@ import {
 import Home from './Home';
 import HolidayList from './HolidayList';
 import HolidayShow from './HolidayShow';
+import HolidayEdit from './HolidayEdit';
 
 class App extends React.Component {
   render() {
@@ -24,6 +25,7 @@ class App extends React.Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/holidays" component={HolidayList} />
           <Route exact path="/holidays/:id" render={ (props) => <HolidayShow {...props} /> } />
+          <Route exact path="/holidays/edit/:id" render={ (props) => <HolidayEdit {...props} /> } />
           <footer>
             <p>Copyleft 2019 No rights reserved, Okay USA!</p>
           </footer>

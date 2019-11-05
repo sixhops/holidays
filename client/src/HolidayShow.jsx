@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import Tradition from './Tradition';
+import HolidayDate from './HolidayDate';
+import { Link } from 'react-router-dom';
 
 class HolidayShow extends React.Component {
   state = {
@@ -36,19 +39,21 @@ class HolidayShow extends React.Component {
     })
   }
 
+  // TODO: This component really needs to be three
   render() {
     var holidayData;
     if (this.state.holiday) {
+      // Map all traditions into their own elements
       var traditions = this.state.holiday.traditions.map((tradition, id) => (
-        <div key={id}>
-          <h4>{tradition.name}</h4>
-          <p>{tradition.description}</p>
-        </div>
+        <Tradition tradition={tradition} key={id} />
       ))
+      
       holidayData = (
         <>
           <h1>{this.state.holiday.name}</h1>
           <p>{this.state.holiday.description}</p>
+          <HolidayDate startDate={this.state.holiday.startDate} endDate={this.state.holiday.endDate} />
+          <Link to={`/holidays/edit/${this.state.holiday._id}`}>Edit this holiday</Link>
           {traditions}
         </>
       )
