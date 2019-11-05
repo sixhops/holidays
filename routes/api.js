@@ -33,8 +33,7 @@ router.put('/holidays/:id', (req, res) => {
 // POST /api/holidays/:id/traditions - Adds a new Tradition to this Holiday
 router.post('/holidays/:id/traditions', (req, res) => {
   Holiday.findById(req.params.id, (err, holiday) => {
-    const trad = Tradition(req.body);
-    holiday.traditions.push(trad);
+    holiday.traditions.push(req.body);
     holiday.save((err, holiday) => {
       res.status(201).json(holiday);
     });
@@ -49,6 +48,5 @@ router.delete('/holidays/:hid/traditions/:tid', (req, res) => {
     });
   });
 });
-
 
 module.exports = router;
